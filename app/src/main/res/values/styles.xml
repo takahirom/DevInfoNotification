@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="NotificationContents">
         <item name="android:textColor">#ffffff</item>
-        <item name="android:textSize">17dp</item>
+        <item name="android:textSize">15dp</item>
         <item name="android:textStyle">bold</item>
     </style>
     <style name="NotificationTitle">
