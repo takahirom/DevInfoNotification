@@ -40,13 +40,13 @@ public class HardwareInfo {
                 dpi = "HDPI";
                 break;
             case DisplayMetrics.DENSITY_XHIGH:
-                dpi = "XDPI";
+                dpi = "XHDPI";
                 break;
             case DisplayMetrics.DENSITY_XXHIGH:
-                dpi = "XXDPI";
+                dpi = "XXHDPI";
                 break;
             case DisplayMetrics.DENSITY_XXXHIGH:
-                dpi = "XXXDPI";
+                dpi = "XXXHDPI";
                 break;
             case DisplayMetrics.DENSITY_TV:
                 dpi = "TVDPI";
