@@ -18,8 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="#999999"
-            style="@android:style/TextAppearance.StatusBar.EventContent"
+            style="@style/NotificationTitle"
             android:text="MODEL" />
 
         <TextView
@@ -27,8 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textSize="13dp"
-            android:textColor="@android:color/white"
+            style="@style/NotificationContents"
+            android:textSize="12dp"
             android:text="Nexus 5" />
 
 
@@ -45,8 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="#999999"
-            style="@android:style/TextAppearance.StatusBar.EventContent"
+            style="@style/NotificationTitle"
             android:text="OS" />
 
         <TextView
@@ -54,8 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="@android:color/white"
-            style="@android:style/TextAppearance.StatusBar.Title"
+            style="@style/NotificationContents"
             android:text="2.2(API 8)" />
 
 
@@ -72,8 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="#999999"
-            style="@android:style/TextAppearance.StatusBar.EventContent"
+            style="@style/NotificationTitle"
             android:text="DensityDpi" />
 
         <TextView
@@ -81,8 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="@android:color/white"
-            style="@android:style/TextAppearance.StatusBar.Title"
+            style="@style/NotificationContents"
             android:text="XHDPI(x1.x)" />
 
     </LinearLayout>
@@ -98,8 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:textColor="#999999"
-            style="@android:style/TextAppearance.StatusBar.EventContent"
+            style="@style/NotificationTitle"
             android:text="ScreenSize" />
 
         <TextView
@@ -108,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textColor="@android:color/white"
-            style="@android:style/TextAppearance.StatusBar.Title"
+            style="@style/NotificationContents"
             android:text="1080x1680" />
 
     </LinearLayout>
