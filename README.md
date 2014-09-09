@@ -1,3 +1,10 @@
+DevInfoNotification
+======
+This app is for developers who want to use the Android device of many kinds.  
+This app displays info such as 'Nexus5 XXHDPI 2.2'
+![image](https://cloud.githubusercontent.com/assets/1386930/4202544/b64fd97a-3828-11e4-9cc1-991b153d4faa.png)
+
+
 License
 =======
 
