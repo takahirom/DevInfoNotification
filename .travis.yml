@@ -5,4 +5,4 @@ android:
     components:
         - build-tools-20.0.0
         
-script: bash gradlew.sh build
+script: bash gradlew build
