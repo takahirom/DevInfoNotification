@@ -1,9 +1,11 @@
 package com.kogitune.devinfonotification;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.app.*;
+import android.content.*;
+import android.net.*;
+import android.os.*;
+import android.view.*;
+import android.view.View.*;
 
 
 public class MainActivity extends Activity {
@@ -12,6 +14,24 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+		findViewById(R.id.go_store).setOnClickListener(new OnClickListener(){
+			
+			public void onClick(View view){
+				final String appPackageName = getPackageName();
+				try {
+					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+				} catch (ActivityNotFoundException e) {
+					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + appPackageName)));
+				}
+			}
+		});
+		findViewById(R.id.go_github).setOnClickListener(new OnClickListener(){
+
+				public void onClick(View view){
+					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/takahirom/DevInfoNotification")));
+				}
+			});
+		
         new DevInfoNotification(this,new HardwareInfo()).show();
     }
 

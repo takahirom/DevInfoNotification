@@ -9,8 +9,22 @@
     tools:context=".MainActivity">
 
     <TextView
+		android:id="@+id/explain"
         android:text="@string/hello_world"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
+    <Button
+		android:id="@+id/go_store"
+        android:text="Go PlayStore(Please review!)"
+		android:layout_below="@id/explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+	<Button
+		android:id="@+id/go_github"
+        android:text="Go Github(Please send pull request!)"
+		android:layout_below="@id/go_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+	
+	
 </RelativeLayout>
