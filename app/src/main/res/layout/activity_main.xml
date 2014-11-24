@@ -10,7 +10,7 @@
 
     <TextView
 		android:id="@+id/explain"
-        android:text="@string/hello_world"
+        android:text="@string/explain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button

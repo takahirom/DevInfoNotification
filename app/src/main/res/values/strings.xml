@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">DevInfoNotification</string>
-    <string name="hello_world">Please look notification.</string>
+    <string name="explain">Please look notification.</string>
     <string name="action_settings">Settings</string>
 
 </resources>
