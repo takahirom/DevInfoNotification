@@ -29,7 +29,7 @@ public class DevInfoNotification {
         contentView.setTextViewText(R.id.text_os, mHardwareInfo.getOs());
         contentView.setTextViewText(R.id.text_size, mHardwareInfo.getScreenSize(mContext));
         Notification notification = new NotificationCompat.Builder(mContext).setSmallIcon(R.drawable.ic_launcher).setOngoing(true)
-                .setContentIntent(PendingIntent.getActivity(mContext, 0, new Intent(), 0)).build();
+                .setContentIntent(PendingIntent.getActivity(mContext, 0, new Intent(mContext,MainActivity.class), 0)).build();
         notification.contentView = contentView;
         mNotificationManager.notify(1, notification);
     }
