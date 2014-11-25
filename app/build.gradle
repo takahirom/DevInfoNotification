@@ -3,7 +3,6 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath 'com.android.tools.build:gradle:0.12.+'
     classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.+'
   }
 }
@@ -24,7 +23,6 @@ android {
     }
     buildTypes {
         release {
-            runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
