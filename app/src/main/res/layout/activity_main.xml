@@ -13,7 +13,8 @@
         android:text="@string/explain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <Button
+    
+	<Button
 		android:id="@+id/go_store"
         android:text="Go PlayStore(Please review!)"
 		android:layout_below="@id/explain"
@@ -26,5 +27,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 	
+	<android.support.v7.widget.SwitchCompat
+		android:id="@+id/is_show_notification"
+		android:layout_below="@id/go_github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+		android:textOn="ON"
+		android:textOff="OFF"
+		/>
 	
 </RelativeLayout>

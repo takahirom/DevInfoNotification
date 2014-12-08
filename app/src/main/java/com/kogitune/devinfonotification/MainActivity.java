@@ -10,13 +10,13 @@ import android.preference.*;
 
 
 public class MainActivity extends Activity {
-    
+    private static final String SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);s
-		//preferences.getString(
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		Boolean isNotificationShow = preferences.getBoolean(SHOW_NOTIFICATION,true);
 		findViewById(R.id.go_store).setOnClickListener(new OnClickListener(){
 			
 			public void onClick(View view){
@@ -34,8 +34,9 @@ public class MainActivity extends Activity {
 					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/takahirom/DevInfoNotification")));
 				}
 			});
-		
-        new DevInfoNotification(this,new HardwareInfo()).show();
+		if(isNotificationShow){
+            new DevInfoNotification(this,new HardwareInfo()).show();
+		}
     }
 
 
