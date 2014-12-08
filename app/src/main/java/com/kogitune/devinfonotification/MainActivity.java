@@ -6,14 +6,17 @@ import android.net.*;
 import android.os.*;
 import android.view.*;
 import android.view.View.*;
+import android.preference.*;
 
 
 public class MainActivity extends Activity {
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);s
+		//preferences.getString(
 		findViewById(R.id.go_store).setOnClickListener(new OnClickListener(){
 			
 			public void onClick(View view){
