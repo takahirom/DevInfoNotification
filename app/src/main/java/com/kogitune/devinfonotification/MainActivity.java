@@ -4,19 +4,26 @@ import android.app.*;
 import android.content.*;
 import android.net.*;
 import android.os.*;
+import android.support.v7.widget.SwitchCompat;
 import android.view.*;
 import android.view.View.*;
 import android.preference.*;
+import android.support.v7.widget.Toolbar;
+import android.support.v7.app.ActionBarActivity;
+import android.widget.CompoundButton;
 
 
-public class MainActivity extends Activity {
-    private static final String SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
+public class MainActivity extends ActionBarActivity {
+    private DevInfoNotification mDevInfoNotification;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-		Boolean isNotificationShow = preferences.getBoolean(SHOW_NOTIFICATION,true);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+
 		findViewById(R.id.go_store).setOnClickListener(new OnClickListener(){
 			
 			public void onClick(View view){
@@ -33,10 +40,27 @@ public class MainActivity extends Activity {
 				public void onClick(View view){
 					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/takahirom/DevInfoNotification")));
 				}
+
 			});
-		if(isNotificationShow){
-            new DevInfoNotification(this,new HardwareInfo()).show();
-		}
+
+        mDevInfoNotification = new DevInfoNotification(this, new HardwareInfo());
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        Boolean isNotificationShow = preferences.getBoolean(DevInfoNotification.SHOW_NOTIFICATION,true);
+        SwitchCompat showSwitchCompat = (SwitchCompat) findViewById(R.id.is_show_notification);
+        showSwitchCompat.setChecked(isNotificationShow);
+        showSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    mDevInfoNotification.show();
+                }else{
+                    mDevInfoNotification.cancel();
+                }
+            }
+        });
+
+        mDevInfoNotification.settingByPref(preferences);
     }
 
 

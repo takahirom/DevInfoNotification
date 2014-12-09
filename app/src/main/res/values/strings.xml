@@ -4,5 +4,7 @@
     <string name="app_name">DevInfoNotification</string>
     <string name="explain">Please look notification.</string>
     <string name="action_settings">Settings</string>
+    <string name="go_playstore">Go PlayStore(Please review!)</string>
+    <string name="go_github">Go Github(Please send pull request!)</string>
 
 </resources>
