@@ -45,14 +45,15 @@ public class MainActivity extends ActionBarActivity {
 
         mDevInfoNotification = new DevInfoNotification(this, new HardwareInfo());
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         Boolean isNotificationShow = preferences.getBoolean(DevInfoNotification.SHOW_NOTIFICATION,true);
         SwitchCompat showSwitchCompat = (SwitchCompat) findViewById(R.id.is_show_notification);
         showSwitchCompat.setChecked(isNotificationShow);
         showSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+                preferences.edit().put(DevInfoNotification.SHOW_NOTIFICATION,isChecked);
+				if (isChecked){
                     mDevInfoNotification.show();
                 }else{
                     mDevInfoNotification.cancel();
