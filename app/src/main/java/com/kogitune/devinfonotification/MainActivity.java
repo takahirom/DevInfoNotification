@@ -52,7 +52,7 @@ public class MainActivity extends ActionBarActivity {
         showSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean(DevInfoNotification.SHOW_NOTIFICATION,isChecked);
+                preferences.edit().putBoolean(DevInfoNotification.SHOW_NOTIFICATION,isChecked).commit();
 				if (isChecked){
                     mDevInfoNotification.show();
                 }else{
