@@ -1,1 +1,4 @@
 /build
+gradle.properties
+key.p12
+android.keystore

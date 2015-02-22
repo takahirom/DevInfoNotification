@@ -4,13 +4,29 @@ buildscript {
   }
   dependencies {
     classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.+'
+    classpath 'com.github.triplet.gradle:play-publisher:1.0.2'
   }
 }
 
 apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
+apply plugin: 'play'
 
 android {
+    signingConfigs {
+        release {
+            storeFile file("android.keystore")
+            storePassword STORE_PASS
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PASS
+        }
+    }
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
     compileSdkVersion 21
     buildToolsVersion "21.0.2"
 
@@ -21,11 +37,12 @@ android {
         versionCode 6
         versionName "1.5"
     }
-    buildTypes {
-        release {
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+
+}
+play {
+    serviceAccountEmail = SERVICE_ACOUNT_EMAIL
+    pk12File = file('key.p12')
+    uploadImages = true
 }
 
 dependencies {
