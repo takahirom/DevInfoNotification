@@ -5,6 +5,7 @@ This app is for developers who want to use the Android device of many kinds.
   <img alt="Android app on Google Play"
        src="https://developer.android.com/images/brand/en_app_rgb_wo_60.png" />
 </a>
+
 This app displays info such as 'Nexus5 XXHDPI 5.0'
 ![image](https://cloud.githubusercontent.com/assets/1386930/4202544/b64fd97a-3828-11e4-9cc1-991b153d4faa.png)
 
