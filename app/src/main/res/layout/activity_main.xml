@@ -42,5 +42,12 @@
 		android:textOn="ON"
 		android:textOff="OFF"
 		/>
+
+    <Button
+		android:id="@+id/select_debug_app"
+        android:text="@string/go_playstore"
+		android:layout_below="@id/explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 	
 </RelativeLayout>
