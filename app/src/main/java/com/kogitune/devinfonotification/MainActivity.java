@@ -1,15 +1,16 @@
 package com.kogitune.devinfonotification;
 
-import android.app.*;
-import android.content.*;
-import android.net.*;
-import android.os.*;
-import android.support.v7.widget.SwitchCompat;
-import android.view.*;
-import android.view.View.*;
-import android.preference.*;
-import android.support.v7.widget.Toolbar;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SwitchCompat;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
 
 
@@ -44,15 +45,14 @@ public class MainActivity extends ActionBarActivity {
 			});
 
         mDevInfoNotification = new DevInfoNotification(this, new HardwareInfo());
+        boolean isNotificationShow = mDevInfoNotification.isNotificationEnabled();
 
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        Boolean isNotificationShow = preferences.getBoolean(DevInfoNotification.SHOW_NOTIFICATION,true);
         SwitchCompat showSwitchCompat = (SwitchCompat) findViewById(R.id.is_show_notification);
         showSwitchCompat.setChecked(isNotificationShow);
         showSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                preferences.edit().putBoolean(DevInfoNotification.SHOW_NOTIFICATION,isChecked).commit();
+                mDevInfoNotification.setNotificationEnabled(isChecked);
 				if (isChecked){
                     mDevInfoNotification.show();
                 }else{
@@ -61,7 +61,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
-        mDevInfoNotification.settingByPref(preferences);
+        mDevInfoNotification.settingByPref();
     }
 
 

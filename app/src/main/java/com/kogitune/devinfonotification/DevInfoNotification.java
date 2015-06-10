@@ -20,16 +20,24 @@ public class DevInfoNotification {
 
     static final String SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
     private static final int NOTIFICATION_ID = 1;
+    private final SharedPreferences mPreferences;
 
     public DevInfoNotification(Context context, HardwareInfo info) {
         mContext = context;
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mHardwareInfo = info;
     }
 
-    public void settingByPref (SharedPreferences preferences){
-        Boolean isNotificationShow = preferences.getBoolean(SHOW_NOTIFICATION,true);
-        if(isNotificationShow){
+    public boolean isNotificationEnabled(){
+        return mPreferences.getBoolean(DevInfoNotification.SHOW_NOTIFICATION,true);
+    }
+    public boolean setNotificationEnabled(boolean enabled) {
+        return mPreferences.edit().putBoolean(DevInfoNotification.SHOW_NOTIFICATION, enabled).commit();
+    }
+
+    public void settingByPref (){
+        if(isNotificationEnabled()){
             show();
 		} else {
             cancel();
