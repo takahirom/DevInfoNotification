@@ -18,7 +18,7 @@ public class DevInfoNotification {
     private final HardwareInfo mHardwareInfo;
     private final NotificationManager mNotificationManager;
 
-    static final String SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
+    private static final String SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
     private static final int NOTIFICATION_ID = 1;
     private final SharedPreferences mPreferences;
 
