@@ -3,47 +3,109 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="64dp"
+    android:padding="5dp"
     android:background="@android:color/black"
-    android:orientation="horizontal"
-    android:padding="5dp">
+    android:orientation="horizontal">
 
 
-    <Button
-        android:id="@+id/detail_button"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:text="detail" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/NotificationTitle"
+            android:text="MODEL" />
+
+        <TextView
+            android:id="@+id/text_model"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/NotificationContents"
+            android:text="Nexus 5" />
 
 
-    <Button
-        android:id="@+id/uninstall_button"
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:text="uninstall" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/time_button"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/NotificationTitle"
+            android:text="OS" />
+
+        <TextView
+            android:id="@+id/text_os"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/NotificationContents"
+            android:text="2.2(API 8)" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:text="time" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/locale_button"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/NotificationTitle"
+            android:text="DensityDpi" />
+
+        <TextView
+            android:id="@+id/text_dpi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/NotificationContents"
+            android:text="XHDPI(x1.x)" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:text="locale" />
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/NotificationTitle"
+            android:text="ScreenSize" />
+
+        <TextView
+            android:id="@+id/text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white"
+            style="@style/NotificationContents"
+            android:text="1080x1680" />
+
+    </LinearLayout>
 
 
 </LinearLayout>
