@@ -1,53 +1,52 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    tools:context=".MainActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tool_bar"
-        android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary">
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:minHeight="?attr/actionBarSize"></android.support.v7.widget.Toolbar>
 
 
-    <TextView
-		android:id="@+id/explain"
-        android:layout_below="@id/tool_bar"
-        android:text="@string/explain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    
-	<Button
-		android:id="@+id/go_store"
-        android:text="@string/go_playstore"
-		android:layout_below="@id/explain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-	<Button
-		android:id="@+id/go_github"
-        android:text="@string/go_github"
-		android:layout_below="@id/go_store"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-	
-	<android.support.v7.widget.SwitchCompat
-		android:id="@+id/is_show_notification"
-		android:layout_below="@id/go_github"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enable"
-		android:textOn="ON"
-		android:textOff="OFF"
-		/>
+        <Button
+            android:id="@+id/select_debug_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tool_bar"
+            android:text="@string/select_debug_app" />
 
-    <Button
-		android:id="@+id/select_debug_app"
-        android:text="@string/go_playstore"
-		android:layout_below="@id/explain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-	
-</RelativeLayout>
+        <TextView
+            android:id="@+id/explain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/select_debug_app"
+            android:text="@string/explain" />
+
+        <Button
+            android:id="@+id/go_store"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/explain"
+            android:text="@string/go_playstore" />
+
+        <Button
+            android:id="@+id/go_github"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/go_store"
+            android:text="@string/go_github" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/is_show_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/go_github"
+            android:text="Enable"
+            android:textOff="OFF"
+            android:textOn="ON" />
+
+    </RelativeLayout>
+</layout>

@@ -11,7 +11,7 @@ public class PInfo {
     String versionName = "";
     int versionCode = 0;
     Drawable icon;
-    public getAppName(){
+    public String getAppName(){
         return appname;
     }
 }

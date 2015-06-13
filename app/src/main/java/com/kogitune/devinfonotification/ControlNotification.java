@@ -46,7 +46,7 @@ public class ControlNotification {
 
     public void show() {
         RemoteViews contentView = new RemoteViews(mContext.getPackageName(), R.layout.notification);
-        contentView.setOnClickPendingIntent(R.id.detail_button, );
+//        contentView.setOnClickPendingIntent(R.id.detail_button, P);
         Notification notification = new NotificationCompat.Builder(mContext).setSmallIcon(R.drawable.ic_launcher).setOngoing(true)
                 .setContentIntent(PendingIntent.getActivity(mContext, 0, new Intent(mContext,MainActivity.class), 0)).build();
         notification.contentView = contentView;

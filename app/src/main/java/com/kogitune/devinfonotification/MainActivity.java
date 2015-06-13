@@ -65,6 +65,13 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        findViewById(R.id.select_debug_app).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: show select debug app dialog
+            }
+        });
+
     }
 
 
