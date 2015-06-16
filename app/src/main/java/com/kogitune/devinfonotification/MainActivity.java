@@ -20,7 +20,7 @@ import com.kogitune.devinfonotification.apps.AppsAdapter;
 
 
 public class MainActivity extends ActionBarActivity {
-    private DevInfoNotification mDevInfoNotification;
+    private DevInfoNotification devInfoNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +30,8 @@ public class MainActivity extends ActionBarActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
-        mDevInfoNotification = new DevInfoNotification(this, new HardwareInfo());
-        mDevInfoNotification.settingByPref();
+        devInfoNotification = new DevInfoNotification(this, new HardwareInfo());
+        devInfoNotification.settingByPref();
         setupViews();
     }
 
@@ -54,18 +54,18 @@ public class MainActivity extends ActionBarActivity {
             }
 
         });
-        boolean isNotificationShow = mDevInfoNotification.isNotificationEnabled();
+        boolean isNotificationShow = devInfoNotification.isNotificationEnabled();
 
         SwitchCompat showSwitchCompat = (SwitchCompat) findViewById(R.id.is_show_notification);
         showSwitchCompat.setChecked(isNotificationShow);
         showSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mDevInfoNotification.setNotificationEnabled(isChecked);
+                devInfoNotification.setNotificationEnabled(isChecked);
                 if (isChecked) {
-                    mDevInfoNotification.show();
+                    devInfoNotification.show();
                 } else {
-                    mDevInfoNotification.cancel();
+                    devInfoNotification.cancel();
                 }
             }
         });

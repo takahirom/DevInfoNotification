@@ -17,23 +17,23 @@ import java.util.List;
  * Created by takam on 2015/06/11.
  */
 public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ContactViewHolder> {
-    private final PackageManager mPackageManager;
-    ArrayList<PInfo> mAppn;
+    private final PackageManager packageManager;
+    ArrayList<PInfo> appn;
 
     public AppsAdapter(PackageManager packageManager) {
-        this.mPackageManager = packageManager;
-        mAppn = getInstalledApps(true);
+        this.packageManager = packageManager;
+        appn = getInstalledApps(true);
     }
 
     @Override
     public int getItemCount() {
 
-        return mAppn.size();
+        return appn.size();
     }
 
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int pos) {
-        holder.mAppname.setText(mAppn.get(pos).mPname);
+        holder.mAppname.setText(appn.get(pos).pname);
     }
 
     @Override
@@ -46,18 +46,18 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ContactViewHol
 
     private ArrayList<PInfo> getInstalledApps(boolean getSysPackages) {
         ArrayList<PInfo> res = new ArrayList<PInfo>();
-        List<PackageInfo> packs = mPackageManager.getInstalledPackages(0);
+        List<PackageInfo> packs = packageManager.getInstalledPackages(0);
         for (int i = 0; i < packs.size(); i++) {
             PackageInfo p = packs.get(i);
             if ((!getSysPackages) && (p.versionName == null)) {
                 continue;
             }
             PInfo newInfo = new PInfo();
-            newInfo.mAppname = p.applicationInfo.loadLabel(mPackageManager).toString();
-            newInfo.mPname = p.packageName;
-            newInfo.mVersionName = p.versionName;
-            newInfo.mVersionCode = p.versionCode;
-            newInfo.mIcon = p.applicationInfo.loadIcon(mPackageManager);
+            newInfo.appname = p.applicationInfo.loadLabel(packageManager).toString();
+            newInfo.pname = p.packageName;
+            newInfo.versionName = p.versionName;
+            newInfo.versionCode = p.versionCode;
+            newInfo.icon = p.applicationInfo.loadIcon(packageManager);
             res.add(newInfo);
         }
         return res;

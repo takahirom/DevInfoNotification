@@ -14,26 +14,26 @@ import android.widget.RemoteViews;
  * Created by takam on 2014/09/08.
  */
 public class DevInfoNotification {
-    private final Context mContext;
-    private final HardwareInfo mHardwareInfo;
-    private final NotificationManager mNotificationManager;
+    private final Context context;
+    private final HardwareInfo hardwareInfo;
+    private final NotificationManager notificationManager;
 
     private static final String SHOW_NOTIFICATION = "SHOW_NOTIFICATION";
     private static final int NOTIFICATION_ID = 1;
-    private final SharedPreferences mPreferences;
+    private final SharedPreferences preferences;
 
     public DevInfoNotification(Context context, HardwareInfo info) {
-        mContext = context;
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        mHardwareInfo = info;
+        this.context = context;
+        preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        hardwareInfo = info;
     }
 
     public boolean isNotificationEnabled(){
-        return mPreferences.getBoolean(DevInfoNotification.SHOW_NOTIFICATION,true);
+        return preferences.getBoolean(DevInfoNotification.SHOW_NOTIFICATION,true);
     }
     public boolean setNotificationEnabled(boolean enabled) {
-        return mPreferences.edit().putBoolean(DevInfoNotification.SHOW_NOTIFICATION, enabled).commit();
+        return preferences.edit().putBoolean(DevInfoNotification.SHOW_NOTIFICATION, enabled).commit();
     }
 
     public void settingByPref (){
@@ -45,17 +45,17 @@ public class DevInfoNotification {
     }
 
     public void show() {
-        RemoteViews contentView = new RemoteViews(mContext.getPackageName(), R.layout.notification);
-        contentView.setTextViewText(R.id.text_model, mHardwareInfo.getModel());
-        contentView.setTextViewText(R.id.text_dpi, mHardwareInfo.getDpi(mContext));
-        contentView.setTextViewText(R.id.text_os, mHardwareInfo.getOs());
-        contentView.setTextViewText(R.id.text_size, mHardwareInfo.getScreenSize(mContext));
-        Notification notification = new NotificationCompat.Builder(mContext).setSmallIcon(R.drawable.ic_launcher).setOngoing(true)
-                .setContentIntent(PendingIntent.getActivity(mContext, 0, new Intent(mContext,MainActivity.class), 0)).build();
+        RemoteViews contentView = new RemoteViews(context.getPackageName(), R.layout.notification);
+        contentView.setTextViewText(R.id.text_model, hardwareInfo.getModel());
+        contentView.setTextViewText(R.id.text_dpi, hardwareInfo.getDpi(context));
+        contentView.setTextViewText(R.id.text_os, hardwareInfo.getOs());
+        contentView.setTextViewText(R.id.text_size, hardwareInfo.getScreenSize(context));
+        Notification notification = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.ic_launcher).setOngoing(true)
+                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context,MainActivity.class), 0)).build();
         notification.contentView = contentView;
-        mNotificationManager.notify(NOTIFICATION_ID, notification);
+        notificationManager.notify(NOTIFICATION_ID, notification);
     }
     public void cancel() {
-        mNotificationManager.cancel(NOTIFICATION_ID);
+        notificationManager.cancel(NOTIFICATION_ID);
     }
 }

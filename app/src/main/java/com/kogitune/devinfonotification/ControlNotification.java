@@ -11,29 +11,29 @@ import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 /**
- * Created by takam on 2014/09/08.
+ * TODO: STUB implementation!!
  */
 public class ControlNotification {
-    private final Context mContext;
-    private final HardwareInfo mHardwareInfo;
-    private final NotificationManager mNotificationManager;
+    private final Context context;
+    private final HardwareInfo hardwareInfo;
+    private final NotificationManager notificationManager;
 
     private static final String SHOW_NOTIFICATION = "SHOW_CONTROL_NOTIFICATION";
     private static final int NOTIFICATION_ID = 1;
-    private final SharedPreferences mPreferences;
+    private final SharedPreferences preferences;
 
     public ControlNotification(Context context, HardwareInfo info) {
-        mContext = context;
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        mHardwareInfo = info;
+        this.context = context;
+        preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        hardwareInfo = info;
     }
 
     public boolean isNotificationEnabled(){
-        return mPreferences.getBoolean(ControlNotification.SHOW_NOTIFICATION,true);
+        return preferences.getBoolean(ControlNotification.SHOW_NOTIFICATION,true);
     }
     public boolean setNotificationEnabled(boolean enabled) {
-        return mPreferences.edit().putBoolean(ControlNotification.SHOW_NOTIFICATION, enabled).commit();
+        return preferences.edit().putBoolean(ControlNotification.SHOW_NOTIFICATION, enabled).commit();
     }
 
     public void settingByPref (){
@@ -45,14 +45,14 @@ public class ControlNotification {
     }
 
     public void show() {
-        RemoteViews contentView = new RemoteViews(mContext.getPackageName(), R.layout.notification);
+        RemoteViews contentView = new RemoteViews(context.getPackageName(), R.layout.notification);
 //        contentView.setOnClickPendingIntent(R.id.detail_button, P);
-        Notification notification = new NotificationCompat.Builder(mContext).setSmallIcon(R.drawable.ic_launcher).setOngoing(true)
-                .setContentIntent(PendingIntent.getActivity(mContext, 0, new Intent(mContext,MainActivity.class), 0)).build();
+        Notification notification = new NotificationCompat.Builder(context).setSmallIcon(R.drawable.ic_launcher).setOngoing(true)
+                .setContentIntent(PendingIntent.getActivity(context, 0, new Intent(context,MainActivity.class), 0)).build();
         notification.contentView = contentView;
-        mNotificationManager.notify(NOTIFICATION_ID, notification);
+        notificationManager.notify(NOTIFICATION_ID, notification);
     }
     public void cancel() {
-        mNotificationManager.cancel(NOTIFICATION_ID);
+        notificationManager.cancel(NOTIFICATION_ID);
     }
 }
