@@ -11,7 +11,7 @@
         <item name="android:textSize">12dp</item>
     </style>
 
-    <style name="AppCompatTheme" parent="@style/Theme.AppCompat.Light">
+    <style name="AppCompatTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
     </style>
 

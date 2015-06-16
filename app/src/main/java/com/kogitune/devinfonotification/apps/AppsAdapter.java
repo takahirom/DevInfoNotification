@@ -17,25 +17,23 @@ import java.util.List;
  * Created by takam on 2015/06/11.
  */
 public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ContactViewHolder> {
-    private final PackageManager packageManager;
-    ArrayList<PInfo> appn;
+    private final PackageManager mPackageManager;
+    ArrayList<PInfo> mAppn;
 
     public AppsAdapter(PackageManager packageManager) {
-        this.packageManager = packageManager;
-        appn = getInstalledApps(true);
+        this.mPackageManager = packageManager;
+        mAppn = getInstalledApps(true);
     }
 
     @Override
     public int getItemCount() {
 
-        return appn.size();
+        return mAppn.size();
     }
 
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int pos) {
-        for (int i = 0; i < appn.size(); i++) {
-            holder.appname.setText(appn.get(i).pname);
-        }
+        holder.mAppname.setText(mAppn.get(pos).mPname);
     }
 
     @Override
@@ -48,29 +46,29 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ContactViewHol
 
     private ArrayList<PInfo> getInstalledApps(boolean getSysPackages) {
         ArrayList<PInfo> res = new ArrayList<PInfo>();
-        List<PackageInfo> packs = packageManager.getInstalledPackages(0);
+        List<PackageInfo> packs = mPackageManager.getInstalledPackages(0);
         for (int i = 0; i < packs.size(); i++) {
             PackageInfo p = packs.get(i);
             if ((!getSysPackages) && (p.versionName == null)) {
                 continue;
             }
             PInfo newInfo = new PInfo();
-            newInfo.appname = p.applicationInfo.loadLabel(packageManager).toString();
-            newInfo.pname = p.packageName;
-            newInfo.versionName = p.versionName;
-            newInfo.versionCode = p.versionCode;
-            newInfo.icon = p.applicationInfo.loadIcon(packageManager);
+            newInfo.mAppname = p.applicationInfo.loadLabel(mPackageManager).toString();
+            newInfo.mPname = p.packageName;
+            newInfo.mVersionName = p.versionName;
+            newInfo.mVersionCode = p.versionCode;
+            newInfo.mIcon = p.applicationInfo.loadIcon(mPackageManager);
             res.add(newInfo);
         }
         return res;
     }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder {
-        TextView appname;
+        TextView mAppname;
 
         public ContactViewHolder(View v) {
             super(v);
-            appname = (TextView) v.findViewById(R.id.appname);
+            mAppname = (TextView) v.findViewById(R.id.appname);
         }
     }
 }

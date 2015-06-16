@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -12,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
+
+import com.kogitune.devinfonotification.apps.AppsAdapter;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -69,9 +74,18 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 // TODO: show select debug app dialog
+                new AlertDialog.Builder(MainActivity.this).setView(createRecyclerView()).show();
             }
         });
+    }
 
+    private RecyclerView createRecyclerView() {
+        final RecyclerView recyclerView = new RecyclerView(MainActivity.this);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(new AppsAdapter(getPackageManager()));
+        return recyclerView;
     }
 
 
