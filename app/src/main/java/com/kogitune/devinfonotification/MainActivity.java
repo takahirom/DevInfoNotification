@@ -4,8 +4,8 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
@@ -15,12 +15,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.kogitune.devinfonotification.apps.AppsAdapter;
+import com.kogitune.devinfonotification.apps.PackageInfo;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
     private DevInfoNotification devInfoNotification;
+    private TextView debugAppText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void setupViews() {
+        debugAppText = ((TextView) findViewById(R.id.debug_app));
         findViewById(R.id.go_store).setOnClickListener(new OnClickListener() {
 
             public void onClick(View view) {
@@ -73,19 +77,28 @@ public class MainActivity extends ActionBarActivity {
         findViewById(R.id.select_debug_app).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: show select debug app dialog
-                new AlertDialog.Builder(MainActivity.this).setView(createRecyclerView()).show();
+                showSelectAppDialog();
             }
         });
     }
 
-    private RecyclerView createRecyclerView() {
+    private void showSelectAppDialog() {
         final RecyclerView recyclerView = new RecyclerView(MainActivity.this);
+        final AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(new AppsAdapter(getPackageManager()));
-        return recyclerView;
+        final AppsAdapter adapter = new AppsAdapter(getResources(), getPackageManager());
+        adapter.setOnItemClickListener(new AppsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClicked(PackageInfo packageInfo) {
+                debugAppText.setText(packageInfo.appName);
+                alertDialog.dismiss();
+            }
+        });
+        recyclerView.setAdapter(adapter);
+        alertDialog.setView(recyclerView);
+        alertDialog.show();
     }
 
 
@@ -109,4 +122,5 @@ public class MainActivity extends ActionBarActivity {
 		*/
         return super.onOptionsItemSelected(item);
     }
+
 }

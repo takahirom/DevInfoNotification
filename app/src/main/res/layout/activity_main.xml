@@ -8,7 +8,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize"></android.support.v7.widget.Toolbar>
+            android:minHeight="?attr/actionBarSize"/>
 
 
         <Button
@@ -17,6 +17,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tool_bar"
             android:text="@string/select_debug_app" />
+
+        <TextView
+            android:id="@+id/debug_app"
+            android:layout_toRightOf="@id/select_debug_app"
+            android:layout_alignTop="@id/select_debug_app"
+            android:layout_marginLeft="8dp"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/explain"
