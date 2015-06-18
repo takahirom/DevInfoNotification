@@ -18,7 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.kogitune.devinfonotification.apps.AppsAdapter;
-import com.kogitune.devinfonotification.apps.PackageInfo;
+import com.kogitune.devinfonotification.apps.AppsPackageInfo;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -91,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
         final AppsAdapter adapter = new AppsAdapter(getResources(), getPackageManager());
         adapter.setOnItemClickListener(new AppsAdapter.OnItemClickListener() {
             @Override
-            public void onItemClicked(PackageInfo packageInfo) {
-                debugAppText.setText(packageInfo.appName);
+            public void onItemClicked(AppsPackageInfo appsPackageInfo) {
+                debugAppText.setText(appsPackageInfo.appName);
                 alertDialog.dismiss();
             }
         });
