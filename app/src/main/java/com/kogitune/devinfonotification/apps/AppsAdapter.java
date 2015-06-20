@@ -24,7 +24,7 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ContactViewHol
     private final Resources resources;
     private final int imageSize;
     private final Handler handler;
-    ArrayList<AppsPackageInfo> appsPackageInfoList = new ArrayList<>();
+    ArrayList<AppPackageInfo> appPackageInfoList = new ArrayList<>();
     private OnItemClickListener onItemClickListener;
 
     public AppsAdapter(Resources resources, PackageManager packageManager) {
@@ -35,7 +35,7 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ContactViewHol
         new Thread(new Runnable() {
             @Override
             public void run() {
-                appsPackageInfoList = getInstalledApps(true);
+                appPackageInfoList = getInstalledApps(true);
                 notifyDataSetChangedOnUiThread();
             }
         }).start();
@@ -53,12 +53,12 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ContactViewHol
 
     @Override
     public int getItemCount() {
-        return appsPackageInfoList.size();
+        return appPackageInfoList.size();
     }
 
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int pos) {
-        final AppsPackageInfo info = appsPackageInfoList.get(pos);
+        final AppPackageInfo info = appPackageInfoList.get(pos);
         holder.appInfoText.setText(info.appName + " " + info.packageName);
 
         info.icon.setBounds(0, 0, imageSize, imageSize);
@@ -80,23 +80,18 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ContactViewHol
         return new ContactViewHolder(itemView);
     }
 
-    private ArrayList<AppsPackageInfo> getInstalledApps(boolean getSysPackages) {
-        ArrayList<AppsPackageInfo> appsPackageInfoList = new ArrayList<AppsPackageInfo>();
-        List<PackageInfo> packs = packageManager.getInstalledPackages(0);
-        for (int i = 0; i < packs.size(); i++) {
-            PackageInfo p = packs.get(i);
+    private ArrayList<AppPackageInfo> getInstalledApps(boolean getSysPackages) {
+        ArrayList<AppPackageInfo> appPackageInfoList = new ArrayList<AppPackageInfo>();
+        List<PackageInfo> packageInfoList = packageManager.getInstalledPackages(0);
+        for (int i = 0; i < packageInfoList.size(); i++) {
+            PackageInfo p = packageInfoList.get(i);
             if ((!getSysPackages) && (p.versionName == null)) {
                 continue;
             }
-            AppsPackageInfo newInfo = new AppsPackageInfo();
-            newInfo.appName = p.applicationInfo.loadLabel(packageManager).toString();
-            newInfo.packageName = p.packageName;
-            newInfo.versionName = p.versionName;
-            newInfo.versionCode = p.versionCode;
-            newInfo.icon = p.applicationInfo.loadIcon(packageManager);
-            appsPackageInfoList.add(newInfo);
+            final AppPackageInfo appPackageInfo = AppPackageInfo.parsePackageInfo(packageManager, p);
+            appPackageInfoList.add(appPackageInfo);
         }
-        return appsPackageInfoList;
+        return appPackageInfoList;
     }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder {
@@ -113,6 +108,6 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.ContactViewHol
     }
 
     public interface OnItemClickListener {
-        void onItemClicked(AppsPackageInfo appsPackageInfo);
+        void onItemClicked(AppPackageInfo appPackageInfo);
     }
 }

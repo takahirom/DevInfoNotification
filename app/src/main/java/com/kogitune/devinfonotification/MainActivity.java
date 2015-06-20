@@ -17,13 +17,14 @@ import android.view.View.OnClickListener;
 import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import com.kogitune.devinfonotification.apps.AppPackageInfo;
 import com.kogitune.devinfonotification.apps.AppsAdapter;
-import com.kogitune.devinfonotification.apps.AppsPackageInfo;
 
 
 public class MainActivity extends AppCompatActivity {
     private DevInfoNotification devInfoNotification;
     private TextView debugAppText;
+    private ControlNotification controlNotification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,18 @@ public class MainActivity extends AppCompatActivity {
 
         devInfoNotification = new DevInfoNotification(this, new HardwareInfo());
         devInfoNotification.settingByPref();
+
+        controlNotification = new ControlNotification(this);
+        controlNotification.settingByPref();
         setupViews();
     }
 
     private void setupViews() {
         debugAppText = ((TextView) findViewById(R.id.debug_app));
+        if (controlNotification.getDebugAppName() != null) {
+            debugAppText.setText(controlNotification.getDebugAppName());
+        }
+
         findViewById(R.id.go_store).setOnClickListener(new OnClickListener() {
 
             public void onClick(View view) {
@@ -80,6 +88,22 @@ public class MainActivity extends AppCompatActivity {
                 showSelectAppDialog();
             }
         });
+
+        boolean isControlNotificationShow = controlNotification.isNotificationEnabled();
+        SwitchCompat showControlSwitchCompat = (SwitchCompat) findViewById(R.id.is_show_controll_notification);
+        showControlSwitchCompat.setChecked(isControlNotificationShow);
+        showControlSwitchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                controlNotification.setNotificationEnabled(isChecked);
+                if (isChecked) {
+                    controlNotification.show();
+                } else {
+                    controlNotification.cancel();
+                }
+            }
+        });
+
     }
 
     private void showSelectAppDialog() {
@@ -90,9 +114,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         final AppsAdapter adapter = new AppsAdapter(getResources(), getPackageManager());
         adapter.setOnItemClickListener(new AppsAdapter.OnItemClickListener() {
+
             @Override
-            public void onItemClicked(AppsPackageInfo appsPackageInfo) {
-                debugAppText.setText(appsPackageInfo.appName);
+            public void onItemClicked(AppPackageInfo appPackageInfo) {
+                controlNotification.setDebugPackageInfo(appPackageInfo);
+                final String debugAppName = controlNotification.getDebugAppName();
+                if (debugAppName != null) {
+                    debugAppText.setText(debugAppName);
+                }
+                controlNotification.settingByPref();
                 alertDialog.dismiss();
             }
         });

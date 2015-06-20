@@ -12,5 +12,6 @@ public class Receiver extends BroadcastReceiver{
     public void onReceive(Context context, Intent intent) {
         Context appContext = context.getApplicationContext();
         new DevInfoNotification(appContext,new HardwareInfo()).settingByPref();
+        new ControlNotification(appContext).settingByPref();
     }
 }
