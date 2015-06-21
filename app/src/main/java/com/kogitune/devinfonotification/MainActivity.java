@@ -2,7 +2,9 @@ package com.kogitune.devinfonotification;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import com.kogitune.devinfonotification.apps.AppPackageInfo;
 import com.kogitune.devinfonotification.apps.AppsAdapter;
+import com.kogitune.devinfonotification.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.setSdkVersion(Build.VERSION.SDK_INT);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);

@@ -39,7 +39,7 @@ public class ControlNotification {
     }
 
     public boolean isNotificationEnabled() {
-        return preferences.getBoolean(ControlNotification.SHOW_NOTIFICATION, true);
+        return preferences.getBoolean(ControlNotification.SHOW_NOTIFICATION, false);
     }
     public boolean setNotificationEnabled(boolean enabled) {
         return preferences.edit().putBoolean(ControlNotification.SHOW_NOTIFICATION, enabled).commit();
