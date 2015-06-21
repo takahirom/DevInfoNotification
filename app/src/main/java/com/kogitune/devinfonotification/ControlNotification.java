@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.kogitune.devinfonotification.apps.AppPackageInfo;
@@ -56,11 +57,22 @@ public class ControlNotification {
     public void show() {
         RemoteViews contentView = new RemoteViews(context.getPackageName(), R.layout.control_notification);
 
-        final Bitmap appBitmap = ((BitmapDrawable) debugAppPackageInfo.icon).getBitmap();
-        contentView.setImageViewBitmap(R.id.debug_app, appBitmap);
+        if (debugAppPackageInfo != null) {
+            final Bitmap appBitmap = ((BitmapDrawable) debugAppPackageInfo.icon).getBitmap();
+            contentView.setImageViewBitmap(R.id.debug_app, appBitmap);
+            contentView.setOnClickPendingIntent(R.id.debug_app, createLaunchPendingIntent());
 
-        contentView.setOnClickPendingIntent(R.id.detail_button, createDetailPendingIntent());
-        contentView.setOnClickPendingIntent(R.id.uninstall_button, createUninstallPendingIntent());
+            contentView.setOnClickPendingIntent(R.id.detail_button, createDetailPendingIntent());
+            contentView.setOnClickPendingIntent(R.id.uninstall_button, createUninstallPendingIntent());
+
+            contentView.setViewVisibility(R.id.debug_app, View.VISIBLE);
+            contentView.setViewVisibility(R.id.detail_button, View.VISIBLE);
+            contentView.setViewVisibility(R.id.uninstall_button, View.VISIBLE);
+        } else {
+            contentView.setViewVisibility(R.id.debug_app, View.GONE);
+            contentView.setViewVisibility(R.id.detail_button, View.GONE);
+            contentView.setViewVisibility(R.id.uninstall_button, View.GONE);
+        }
 
         contentView.setOnClickPendingIntent(R.id.time_button, createTimePendingIntent());
         contentView.setOnClickPendingIntent(R.id.locale_button, createLocalePendingIntent());
@@ -72,14 +84,16 @@ public class ControlNotification {
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
+    private PendingIntent createLaunchPendingIntent(){
+        final Intent launchIntent = context.getPackageManager().getLaunchIntentForPackage(debugAppPackageInfo.packageName);
+        return PendingIntent.getActivity(context, 100, launchIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+    }
+
     private PendingIntent createDetailPendingIntent(){
-        if (debugAppPackageInfo==null) {
-            return null;
-        }
         Intent intent = new Intent(android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
         intent.setData(Uri.parse("package:" + debugAppPackageInfo.packageName));
-        return PendingIntent.getActivity(context, 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getActivity(context, 101, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     private PendingIntent createUninstallPendingIntent(){
@@ -88,12 +102,12 @@ public class ControlNotification {
         }
         Uri uri = Uri.fromParts("package", debugAppPackageInfo.packageName, null);
         Intent intent = new Intent(Intent.ACTION_DELETE, uri);
-        return PendingIntent.getActivity(context, 101, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getActivity(context, 102, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     private PendingIntent createTimePendingIntent() {
         final Intent intent = new Intent(Settings.ACTION_DATE_SETTINGS);
-        return PendingIntent.getActivity(context, 102, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        return PendingIntent.getActivity(context, 103, intent, PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
     private PendingIntent createLocalePendingIntent() {
