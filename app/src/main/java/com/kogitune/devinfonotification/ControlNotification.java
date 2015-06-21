@@ -6,12 +6,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
-import android.view.View;
 import android.widget.RemoteViews;
 
 import com.kogitune.devinfonotification.apps.AppPackageInfo;
@@ -55,13 +55,12 @@ public class ControlNotification {
 
     public void show() {
         RemoteViews contentView = new RemoteViews(context.getPackageName(), R.layout.control_notification);
-        if (Build.VERSION_CODES.FROYO < Build.VERSION.SDK_INT) {
-            contentView.setOnClickPendingIntent(R.id.detail_button, createDetailPendingIntent());
-            contentView.setOnClickPendingIntent(R.id.uninstall_button, createUninstallPendingIntent());
-        } else {
-            contentView.setViewVisibility(R.id.detail_button, View.GONE);
-            contentView.setViewVisibility(R.id.uninstall_button, View.GONE);
-        }
+
+        final Bitmap appBitmap = ((BitmapDrawable) debugAppPackageInfo.icon).getBitmap();
+        contentView.setImageViewBitmap(R.id.debug_app, appBitmap);
+
+        contentView.setOnClickPendingIntent(R.id.detail_button, createDetailPendingIntent());
+        contentView.setOnClickPendingIntent(R.id.uninstall_button, createUninstallPendingIntent());
 
         contentView.setOnClickPendingIntent(R.id.time_button, createTimePendingIntent());
         contentView.setOnClickPendingIntent(R.id.locale_button, createLocalePendingIntent());

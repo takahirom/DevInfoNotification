@@ -7,6 +7,13 @@
     android:orientation="horizontal"
     android:padding="5dp">
 
+    <ImageView
+        android:id="@+id/debug_app"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+         />
+
 
     <Button
         android:id="@+id/detail_button"
@@ -14,8 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:text="detail" />
+        android:text="detail"
+        android:textSize="8sp" />
 
 
     <Button
@@ -24,8 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:text="uninstall" />
+        android:text="uninstall"
+        android:textSize="8sp" />
 
     <Button
         android:id="@+id/time_button"
@@ -33,8 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:text="time" />
+        android:text="time"
+        android:textSize="8sp" />
 
     <Button
         android:id="@+id/locale_button"
@@ -42,8 +49,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:text="locale" />
+        android:text="locale"
+        android:textSize="8sp" />
 
 
 </LinearLayout>
