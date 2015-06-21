@@ -1,72 +1,70 @@
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/tool_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            android:minHeight="?attr/actionBarSize" />
+    <TextView
+        android:id="@+id/explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tool_bar"
+        android:text="@string/explain" />
 
-        <TextView
-            android:id="@+id/explain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tool_bar"
-            android:text="@string/explain" />
+    <Button
+        android:id="@+id/go_store"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/explain"
+        android:text="@string/go_playstore" />
 
-        <Button
-            android:id="@+id/go_store"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/explain"
-            android:text="@string/go_playstore" />
+    <Button
+        android:id="@+id/go_github"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/go_store"
+        android:text="@string/go_github" />
 
-        <Button
-            android:id="@+id/go_github"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/go_store"
-            android:text="@string/go_github" />
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/is_show_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/go_github"
+        android:text="Enable Info Notification"
+        android:textOff="OFF"
+        android:textOn="ON" />
 
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/is_show_notification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/go_github"
-            android:text="Enable Info Notification"
-            android:textOff="OFF"
-            android:textOn="ON" />
+    <Button
+        android:id="@+id/select_debug_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/is_show_notification"
+        android:text="@string/select_debug_app" />
 
-        <Button
-            android:id="@+id/select_debug_app"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/is_show_notification"
-            android:text="@string/select_debug_app" />
+    <TextView
+        android:id="@+id/debug_app"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/select_debug_app"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/select_debug_app"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/debug_app"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/select_debug_app"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@id/select_debug_app"
-            android:textSize="18sp" />
-
-        <android.support.v7.widget.SwitchCompat
-            android:id="@+id/is_show_controll_notification"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/select_debug_app"
-            android:text="Enable Control Notification"
-            android:textOff="OFF"
-            android:textOn="ON" />
+    <android.support.v7.widget.SwitchCompat
+        android:id="@+id/is_show_controll_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/select_debug_app"
+        android:text="Enable Control Notification"
+        android:textOff="OFF"
+        android:textOn="ON" />
 
 
-    </RelativeLayout>
-</layout>
+</RelativeLayout>
