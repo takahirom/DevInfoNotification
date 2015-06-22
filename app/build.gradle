@@ -14,18 +14,9 @@ apply plugin: 'com.android.databinding'
 //apply plugin: 'play'
 
 android {
-    signingConfigs {
-        release {
-            storeFile file("android.keystore")
-            storePassword STORE_PASS
-            keyAlias KEY_ALIAS
-            keyPassword KEY_PASS
-        }
-    }
     buildTypes {
         release {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
         }
     }
     compileSdkVersion 21
