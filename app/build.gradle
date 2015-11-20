@@ -3,12 +3,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-//        classpath 'com.jakewharton.sdkmanager:gradle-plugin:0.12.+'
 //        classpath 'com.github.triplet.gradle:play-publisher:1.0.2'
     }
 }
 
-//apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
 apply plugin: 'com.android.databinding'
 //apply plugin: 'play'
